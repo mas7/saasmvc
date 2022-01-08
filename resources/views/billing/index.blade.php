@@ -14,24 +14,18 @@
 
 
                     <div class="grid gap-4 grid-cols-3 mt-4">
-                        <div>
-                            <h2 class="text-xl">Bronze Plan</h2>
-                            $9.99 / month
-                            <br>
-                            <x-button class="mt-4">Subscribe</x-button>
-                        </div>
-                        <div>
-                            <h2 class="text-xl">Silver Plan</h2>
-                            $19.99 / month
-                            <br>
-                            <x-button class="mt-4">Subscribe</x-button>
-                        </div>
-                        <div>
-                            <h2 class="text-xl">Gold Plan</h2>
-                            $29.99 / month
-                            <br>
-                            <x-button class="mt-4">Subscribe</x-button>
-                        </div>
+                        @forelse ($plans as $plan)
+                            <div>
+                                <h2 class="text-xl">{{ $plan->name }}</h2>
+                                ${{ round($plan->price / 100, 2) }} / month
+                                <br>
+                                <x-button class="mt-4">Subscribe</x-button>
+                            </div>
+                        @empty
+                            <div>
+                                <h2>No plans at the moment.</h2>
+                            </div>
+                        @endforelse
                     </div>
                 </div>
             </div>

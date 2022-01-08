@@ -16,6 +16,7 @@ class CreatePlansTable extends Migration
         Schema::create('plans', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            // Using integer in cents
             $table->integer('price');
             $table->string('stripe_plan_id')->nullable();
             $table->timestamps();
