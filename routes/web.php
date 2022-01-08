@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BillingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,8 +18,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::group(['middleware' => 'auth'], function () {
+    Route::view('/dashboard', 'dashboard')->name('dashboard');
+    Route::get('/billing', [BillingController::class, 'index'])->name('billing.index');
+});
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
