@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BillingController;
+use App\Http\Controllers\CheckoutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,7 @@ Route::get('/', function () {
 Route::group(['middleware' => 'auth'], function () {
     Route::view('/dashboard', 'dashboard')->name('dashboard');
     Route::get('/billing', [BillingController::class, 'index'])->name('billing.index');
+    Route::get('/checkout/{plan_id}', [CheckoutController::class, 'checkout'])->name('checkout');
 });
 
 require __DIR__ . '/auth.php';
